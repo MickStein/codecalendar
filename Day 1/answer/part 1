@@ -1,0 +1,37 @@
+console.log(find2DigitNum(value12))
+
+function find2DigitNum (list) {
+  // split value list
+  const splitList = list.split(' ')
+  const twoDigitsList = []
+
+  // for each item split each value into individual items
+  splitList.forEach(item => {
+    const elementList = item.split('')
+    const numbersInItem = []
+
+    // for each element add each item that is a num to a group list
+    elementList.forEach(element => {
+      const firstAndLast = []
+      if (!isNaN(element)) {
+        numbersInItem.push(element)
+      }
+    })
+    // take group list first num & last
+    const firstNum = numbersInItem[0]
+    const lastNum = numbersInItem[numbersInItem.length-1]
+    // combine these nums and add to 2 digit list
+    const joinedNum = firstNum+lastNum
+    
+    twoDigitsList.push(joinedNum)
+  })
+  // add all these 2 digs together
+  let total = 0 
+
+  twoDigitsList.forEach(number => {
+    total += parseInt(number)
+    console.log(typeof number)
+  })
+
+  return total
+}

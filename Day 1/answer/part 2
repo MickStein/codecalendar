@@ -1,0 +1,86 @@
+// This is not complete due to awkward numbers not counted for (eg oneeight)
+
+console.log(find2DigitNum(value12))
+
+function find2DigitNum (list) {
+  // split value list
+  let splitList = list.split(' ')
+  splitList = toNumber(splitList)
+  console.log(splitList)
+  const twoDigitsList = []
+
+  // for each item split each value into individual items
+  splitList.forEach(item => {
+    const elementList = item.split('')
+    const numbersInItem = []
+
+    // for each element add each item that is a num to a group list
+    elementList.forEach(element => {
+      const firstAndLast = []
+      if (!isNaN(element)) {
+        numbersInItem.push(element)
+      }
+    })
+    // take group list first num & last
+    const firstNum = numbersInItem[0]
+    const lastNum = numbersInItem[numbersInItem.length-1]
+    // combine these nums and add to 2 digit list
+    const joinedNum = firstNum+lastNum
+    
+    twoDigitsList.push(joinedNum)
+  })
+  // add all these 2 digs together
+  let total = 0 
+
+  twoDigitsList.forEach(number => {
+    total += parseInt(number)
+    console.log(typeof number)
+  })
+
+  return total
+}
+
+function toNumber(list) {
+  // Define a map for written numbers to digits
+  const numberMap = {
+    'one': '1',
+    'two': '2',
+    'three': '3',
+    'four': '4',
+    'five': '5',
+    'six': '6',
+    'seven': '7',
+    'eight': '8',
+    'nine': '9'
+  };
+
+  // Replace written numbers with digits
+  return list.map(item => {
+    for (const writtenNum in numberMap) {
+      const digit = numberMap[writtenNum];
+      item = item.replace(new RegExp(writtenNum, 'g'), digit);
+    }
+    return item;
+  })
+}
+
+const calculateTotal = () => {
+  let total = 0
+  const total1 = find2DigitNum(value1)
+  const total2 = find2DigitNum(value2)
+  const total3 = find2DigitNum(value3)
+  const total4 = find2DigitNum(value4)
+  const total5 = find2DigitNum(value5)
+  const total6 = find2DigitNum(value6)
+  const total7 = find2DigitNum(value7)
+  const total8 = find2DigitNum(value8)
+  const total9 = find2DigitNum(value9)
+  const total10 = find2DigitNum(value10)
+  const total11 = find2DigitNum(value11)
+  const total12 = find2DigitNum(value12)
+
+  total = total1 + total2 + total3 + total4 + total5 + total6 + total7 + total8 + total9 + total10 + total11 + total12
+  return total
+}
+
+console.log('total', calculateTotal())
